@@ -10,7 +10,7 @@ from django.http import JsonResponse
 def home(request): 
     Alltasks=Tasks.objects.all()
     tasks=[task for task in Alltasks if task.user==request.user]
-    return render(request, 'app\index.html',{'Tasks':tasks})
+    return render(request, 'app/index.html',{'Tasks':tasks})
 
 def add_Task(request):
     if request.method=='GET':
