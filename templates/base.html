@@ -1,0 +1,178 @@
+{% load compress %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	{% comment %}
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> {% endcomment %}
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title %}{% endblock title %}</title>
+
+	{% compress css %}
+	<link rel="stylesheet" href="{% static 'src/output.css' %}">
+	{% endcompress %}
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+
+<body class="bg-purple-100 " id="body">
+	<nav class="nav bg-purple-500 flex items-center  px-1 justify-center">
+		<p class="text-white p-3 px-2 text-xl  font-bold ">To-Do </p>
+		<ul class="flex  space-x-1 py-2  text-white  absolute right-1 ">
+			{% if user.is_authenticated %}
+			<li class="text-[15px] rounded  p-2 hover:bg-purple-300"><a role="button" id="" href="\logout">Logout</a></li>
+			<li class="text-[15px] rounded  p-2 hover:bg-purple-300"><a role="button" id="" href="#">Welcome {{user}}</a></li>
+			{% else %}
+			<li class="text-[15px] rounded p-2 hover:bg-purple-300"><a role="button" id="loginBtn" onclick="showLogin()"
+					href="#">Login</a></li>
+			<li class="text-[15px] p-2 rounded hover:bg-purple-300"><a role="button" id="signupBtn" onclick="showSignup()"
+					href="#">Sign up</a></li>
+			{% endif %}
+		</ul>
+
+
+	</nav>
+
+
+	{% for message in messages %}
+	<div id="dismiss_Alert" class=" bg-white px-2 block w-full relative  text-purple-700 p-2 rounded-md ">
+		<p class="float-left w-3/4 break-words text-sm md:text-lg "><strong class="mr-2">Message</strong> {{message}} </p>
+		<span class="dismiss-alert relative right-[-23%] text-xl p-1 hover:text-purple-300 active:text-purple-400 active:bg-gray-100" onclick="dismissAlert()">&times;</span>
+
+	</div>
+	{% endfor %}
+
+	<!-- Login  -->
+	<div id="loginModal"
+		class=" hidden login-form   absolute left-[13%] rounded-lg outline outline-purple-300 outline-2 shadow-purple-500 shadow-md   px-4 pb-4 w-3/4 mx-auto  mt-20 bg-gray-100 sm:w-2/3 md:w-1/2 lg:w-3/12 lg:left-[39%]">
+		<span id="close" onclick="hideLoginModal()" role="button"
+			class="text-3xl  relative left-[96%] text-gray-600 active:font-bold   hover:text-gray-500">&times;</span>
+		<p class="text-purple-800  font-bold text-2xl  text-center ">Login</p>
+		<form action="\login" method="get" class="w-full text-center space-y-6 flex flex-col   bg-gray-100 p-4 ">
+			{% csrf_token %}
+			<input id="lusername" name="username"
+				class="p-1  w-full outline outline-purple-400 outline-1 focus:outline-[3px] rounded-lg hover:outline-2" type="text"
+				placeholder="Enter your username" required>
+			<input id="lpassword" name="password"
+				class="p-1 w-full outline outline-purple-400 outline-1 focus:outline-[3px] rounded-lg hover:outline-2" type="password"
+				placeholder="Enter your password" required>
+			<!-- <div class=" flex justify-center space-x-2">
+			<input type="checkbox" name="check" id="">
+			<p>Remember me</p>
+		</div> -->
+			<div class=" text-center">
+				<button type="submit" class=" py-[5px] px-6 bg-purple-500 rounded-xl text-white active:bg-white active:text-purple-500 active:outline-purple-500 active:outline active:outline-1 hover:bg-purple-400 ">Login</button>
+			</div>
+		</form>
+	</div>
+	<!-- Sign Up -->
+	<div id="signupModal"
+		class="hidden  login-form  absolute left-[13%] rounded-lg outline outline-purple-300 outline-2 shadow-purple-500 shadow-md  px-4  w-3/4 mx-auto  mt-20 pb-4 bg-gray-100 sm:w-2/3 md:w-1/2 lg:w-3/12 lg:left-[39%]">
+		<span id="close" onclick="hideSignUpModal()" role="button"
+			class="text-3xl  relative left-[96%] text-gray-600 active:font-bold   hover:text-gray-500">&times;</span>
+		<p class="text-black  font-semibold text-center text-xl">Sign Up</p>
+		<form action="\signup" method="get"
+			class="w-full text-center space-y-[18px] flex flex-col bg-gray-100 py-4 px-4 ">
+			{% csrf_token %}
+			<input id="name" name="Name" type="text"
+				class=" p-1 w-full rounded-md outline outline-purple-400 outline-1 focus:outline-4 focus:outline-purple-200  focus:outline-offset-2 hover:outline-2"
+				placeholder="Enter your name" required>
+			<input id="email" name="email" type="email"
+				class=" p-1 w-full rounded-md outline outline-purple-400 outline-1 focus:outline-4 focus:outline-purple-200  focus:outline-offset-2 hover:outline-2"
+				placeholder="Enter your email" required>
+			<input id="username" name="username" type="text"
+				class=" p-1 w-full rounded-md outline outline-purple-400 outline-1 focus:outline-4 focus:outline-purple-200  focus:outline-offset-2 hover:outline-2"
+				placeholder="Enter username" required>
+			<input id="password" name="password" type="password"
+				class=" p-1 w-full rounded-md outline outline-purple-400 outline-1 focus:outline-4 focus:outline-purple-200  focus:outline-offset-2 hover:outline-2"
+				placeholder="Enter  password" required>
+			<button onclick="showSignup()" id="signupBtn" type="submit"
+				class="bg-purple-500 p-[5px] rounded-xl text-white active:bg-white active:text-purple-500 active:outline-purple-500 active:outline active:outline-1 hover:bg-purple-400">Sign Up</button>
+		</form>
+	</div>
+
+
+	{% block body %}
+	{% endblock body %}
+	<script>
+
+		// dismiss alert message
+		function dismissAlert() {
+			var alert_Element = document.getElementById('dismiss_Alert');
+			if (alert_Element.classList.contains('block')) {
+				alert_Element.classList.remove('block');
+				alert_Element.classList.add('hidden');
+			}
+		}
+
+		//show login form 
+		function showLogin() {
+			var loginForm = document.getElementById('loginModal');
+			if (loginForm.classList.contains('hidden')) {
+				loginForm.classList.remove('hidden');
+				loginForm.classList.add('block');
+				var signupForm = document.getElementById('signupModal');
+				if (signupForm.classList.contains('block')) {
+					signupForm.classList.remove('block');
+					signupForm.classList.add('hidden');
+				}
+			}
+		}
+		//show sign up form 
+		function showSignup() {
+			var signupForm = document.getElementById('signupModal');
+			if (signupForm.classList.contains('hidden')) {
+				signupForm.classList.remove('hidden');
+				signupForm.classList.add('block');
+				var loginForm = document.getElementById('loginModal');
+				if (loginForm.classList.contains('block')) {
+					loginForm.classList.remove('block');
+					loginForm.classList.add('hidden');
+				}
+			}
+		}
+
+		//hide login form  usign close span
+		function hideLoginModal() {
+			var loginForm = document.getElementById('loginModal');
+			if (loginForm.classList.contains('block')) {
+				loginForm.classList.remove('block');
+				loginForm.classList.add('hidden');
+			}
+		}
+		//hide sign up form  usign close span
+		function hideSignUpModal() {
+			var signupForm = document.getElementById('signupModal');
+			if (signupForm.classList.contains('block')) {
+				signupForm.classList.remove('block');
+				signupForm.classList.add('hidden');
+			}
+		}
+
+		//hide login form  onclick window
+		window.onclick = function (event) {
+			var loginForm = document.getElementById('loginModal');
+			var signupForm = document.getElementById('signupModal');
+			var tForm = document.getElementById('tFormCont');
+			if (event.target == loginForm) {
+				loginForm.classList.remove('block');
+				loginForm.classList.add('hidden');
+			}
+			if (event.target == signupForm) {
+				signupForm.classList.remove('block');
+				signupForm.classList.add('hidden');
+			}
+			if (event.target == tForm) {
+				tForm.classList.remove('block');
+				tForm.classList.add('hidden');
+			}
+		}
+	</script>
+	{% block js %}
+
+	{% endblock js %}
+</body>
+
+</html>
