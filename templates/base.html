@@ -22,8 +22,8 @@
 		<p class="text-white p-3 px-2 text-xl  font-bold ">To-Do </p>
 		<ul class="flex  space-x-1 py-2  text-white  absolute right-1 ">
 			{% if user.is_authenticated %}
-			<li class="text-[15px] rounded  p-2 hover:bg-purple-300"><a role="button" id="" href="\logout">Logout</a></li>
-			<li class="text-[15px] rounded  p-2 hover:bg-purple-300"><a role="button" id="" href="#">Welcome {{user}}</a></li>
+			<li class="text-[13px] rounded  p-2 hover:bg-purple-300"><a role="button" id="" href="\logout">Logout</a></li>
+			<li class="text-[13px] rounded  p-2 hover:bg-purple-300"><a role="button" id="" href="#">Welcome {{user}}</a></li>
 			{% else %}
 			<li class="text-[15px] rounded p-2 hover:bg-purple-300"><a role="button" id="loginBtn" onclick="showLogin()"
 					href="#">Login</a></li>
