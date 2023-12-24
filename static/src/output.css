@@ -626,6 +626,10 @@ video {
   top: -6%;
 }
 
+.right-0 {
+  right: 0px;
+}
+
 .float-left {
   float: left;
 }
@@ -1233,6 +1237,14 @@ video {
 @media (min-width: 768px) {
   .md\:left-\[22\%\] {
     left: 22%;
+  }
+
+  .md\:block {
+    display: block;
+  }
+
+  .md\:hidden {
+    display: none;
   }
 
   .md\:w-1\/2 {

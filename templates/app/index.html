@@ -18,10 +18,14 @@
             {% for task in Tasks %}
             <div class="flex items-center p-1 mx-auto my-4 space-x-4">
                 <input type="checkbox" class="statusCheck" id="s{{task.sno}}">
-                <p class="taskCont w-[52%] break-words text-xs sm:text-sm lg:text-lg" id="taskText{{task.sno}}"> {{task.task}}</p>
-                <p class="w-[28%] text-xs sm:text-sm lg::text-[16px]" id="deadline{{task.sno}}">{{task.deadline}}</p>
+                <p class=" hidden md:block taskCont w-[52%] break-words text-xs sm:text-sm lg:text-lg " id="taskText{{task.sno}}"> {{task.task}}</p>
+                <p class=" hidden md:block w-[28%] text-xs sm:text-sm lg::text-[16px]" id="deadline{{task.sno}}">{{task.deadline}}</p>
+                <div class="flex flex-col w-full md:hidden">
+                    <p class="taskCont  break-words text-sm lg:text-lg " id="taskText{{task.sno}}"> {{task.task}}</p>
+                    <p class="text-xs lg::text-[14px]" id="deadline{{task.sno}}">{{task.deadline}}</p>
+                </div>
                 <button
-                    class="deleteTask  p-1 bg-purple-100 border-[1px] rounded-md text-xs sm:text-sm lg::text-[16px] hover:outline hover:outline-1 hover:outline-purple-200 active:bg-purple-300"
+                    class="deleteTask relative right-0 p-1 bg-purple-100 border-[1px] rounded-md text-xs sm:text-sm lg::text-[16px] hover:outline hover:outline-1 hover:outline-purple-200 active:bg-purple-300"
                     id="deleteTask{{task.sno}}" data-model-pk="{{task.sno}}">Delete</button>
             </div>
             {% endfor %}
