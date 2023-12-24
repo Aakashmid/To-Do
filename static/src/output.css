@@ -694,6 +694,10 @@ video {
   max-height: 400px;
 }
 
+.max-h-\[420px\] {
+  max-height: 420px;
+}
+
 .w-1\/3 {
   width: 33.333333%;
 }
