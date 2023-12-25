@@ -36,10 +36,10 @@
             {% endif %}
         </div>
     </div>
-    <div class="appendTask fixed left-1/2 top-44 transform md:transform-none translate-x-[-50%]   md:left-[22%] w-fit hidden lg:relative lg:block lg:top-14 lg:left-auto "
+    <div class="appendTask fixed left-[10%] top-44 sm:left-[20%] sm:top-[20%] md:left-[22%] w-fit hidden lg:relative lg:block lg:top-14 lg:left-auto "
     id="tFormCont">
     <form action="\addTask" id="taskForm" method="get"
-        class="w-[340px] mx-auto space-y-[20px] flex flex-col bg-gray-50 pb-3 pt-0 px-4 shadow-md rounded-md sm:px-6 md:px-6 sm:pb-10 sm:pt-4 sm:space-y-[24px] sm:w-[400px] lg:w-[90%]">
+        class="w-[340px] space-y-[20px] flex flex-col bg-gray-50 pb-3 pt-0 px-4 shadow-md rounded-md sm:px-6 md:px-6 sm:pb-10 sm:pt-4 sm:space-y-[24px] sm:w-[400px] lg:w-[90%]">
         {% csrf_token %}
         <span id="tFormClose" class="lg:hidden text-lg absolute top-[-6%] left-[94%]   lg:left-[84%] active:text-purple-400"
             onclick="hideTaskForm()">&times;</span>
