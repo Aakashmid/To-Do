@@ -29,8 +29,6 @@ def delete_Task(request):
             pk=request.GET.get('pk')
             task=Tasks.objects.get(sno=pk)
             task.delete()
-            # task.is_active = False
-            # task.save()
             response = JsonResponse({'message': 'data is deleted successfully'})
             response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
             return response
@@ -72,7 +70,7 @@ def loginHand(request):
             user.save()
             login(request,user)
             messages.success(request,"Successfully Logged In")
-            # return render(request, 'app\index.html')
+
             return redirect('/')
         
 def logoutHand(request):

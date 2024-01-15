@@ -19,16 +19,18 @@
 
 <body class="bg-purple-100 " id="body">
 	<nav class="nav bg-purple-500 flex items-center  px-1 lg:justify-center">
-		<p class="text-white p-3 px-2 text-sm lg:text-xl  font-bold ">To-Do </p>
+		<p class="text-white p-3 px-2 text-sm lg:text-3xl  font-bold ">To-Do </p>
 		<ul class="flex  space-x-1 py-2  text-white  absolute right-1 ">
 			{% if user.is_authenticated %}
-			<li class="text-xs lg:text-[15px] rounded  py-2 px-1 hover:bg-purple-300"><a role="button" id="" href="\logout">Logout</a></li>
-			<li class="text-xs lg:text-[15px] rounded  py-2 px-1 hover:bg-purple-300"><a role="button" id="" href="#">Welcome {{user}}</a></li>
+			<li class="text-xs lg:text-[15px] rounded  py-2 px-1 hover:bg-purple-300"><a role="button" id=""
+					href="\logout">Logout</a></li>
+			<li class="text-xs lg:text-[15px] rounded  py-2 px-1 hover:bg-purple-300"><a role="button" id=""
+					href="#">Welcome {{user}}</a></li>
 			{% else %}
 			<li class="text-[15px] rounded p-2 hover:bg-purple-300"><a role="button" id="loginBtn" onclick="showLogin()"
 					href="#">Login</a></li>
-			<li class="text-[15px] p-2 rounded hover:bg-purple-300"><a role="button" id="signupBtn" onclick="showSignup()"
-					href="#">Sign up</a></li>
+			<li class="text-[15px] p-2 rounded hover:bg-purple-300"><a role="button" id="signupBtn"
+					onclick="showSignup()" href="#">Sign up</a></li>
 			{% endif %}
 		</ul>
 
@@ -38,8 +40,11 @@
 
 	{% for message in messages %}
 	<div id="dismiss_Alert" class=" bg-white px-2 block w-full relative  text-purple-700 p-2 rounded-md ">
-		<p class="float-left w-3/4 break-words text-xs sm:text-sm lg:text-lg "><strong class="mr-2">Message</strong> {{message}} </p>
-		<span class="dismiss-alert relative right-[-23%] text-xl p-1 hover:text-purple-300 active:text-purple-400 active:bg-gray-100" onclick="dismissAlert()">&times;</span>
+		<p class="float-left w-3/4 break-words text-xs sm:text-sm lg:text-lg "><strong class="mr-2">Message</strong>
+			{{message}} </p>
+		<span
+			class="dismiss-alert relative right-[-23%] text-xl p-1 hover:text-purple-300 active:text-purple-400 active:bg-gray-100"
+			onclick="dismissAlert()">&times;</span>
 
 	</div>
 	{% endfor %}
@@ -53,17 +58,15 @@
 		<form action="\login" method="get" class="w-full text-center space-y-6 flex flex-col   bg-gray-100 p-4 ">
 			{% csrf_token %}
 			<input id="lusername" name="username"
-				class="p-1  w-full outline outline-purple-400 outline-1 focus:outline-[3px] rounded-lg hover:outline-2" type="text"
-				placeholder="Enter your username" required>
+				class="p-1  w-full outline outline-purple-400 outline-1 focus:outline-[3px] rounded-lg hover:outline-2"
+				type="text" placeholder="Enter your username" required>
 			<input id="lpassword" name="password"
-				class="p-1 w-full outline outline-purple-400 outline-1 focus:outline-[3px] rounded-lg hover:outline-2" type="password"
-				placeholder="Enter your password" required>
-			<!-- <div class=" flex justify-center space-x-2">
-			<input type="checkbox" name="check" id="">
-			<p>Remember me</p>
-		</div> -->
+				class="p-1 w-full outline outline-purple-400 outline-1 focus:outline-[3px] rounded-lg hover:outline-2"
+				type="password" placeholder="Enter your password" required>
+	
 			<div class=" text-center">
-				<button type="submit" class=" py-[5px] px-6 bg-purple-500 rounded-xl text-white active:bg-white active:text-purple-500 active:outline-purple-500 active:outline active:outline-1 hover:bg-purple-400 ">Login</button>
+				<button type="submit"
+					class=" py-[5px] px-6 bg-purple-500 rounded-xl text-white active:bg-white active:text-purple-500 active:outline-purple-500 active:outline active:outline-1 hover:bg-purple-400 ">Login</button>
 			</div>
 		</form>
 	</div>
@@ -89,13 +92,15 @@
 				class=" p-1 w-full rounded-md outline outline-purple-400 outline-1 focus:outline-4 focus:outline-purple-200  focus:outline-offset-2 hover:outline-2"
 				placeholder="Enter  password" required>
 			<button onclick="showSignup()" id="signupBtn" type="submit"
-				class="bg-purple-500 p-[5px] rounded-xl text-white active:bg-white active:text-purple-500 active:outline-purple-500 active:outline active:outline-1 hover:bg-purple-400">Sign Up</button>
+				class="bg-purple-500 p-[5px] rounded-xl text-white active:bg-white active:text-purple-500 active:outline-purple-500 active:outline active:outline-1 hover:bg-purple-400">Sign
+				Up</button>
 		</form>
 	</div>
 
 
 	{% block body %}
 	{% endblock body %}
+	<footer class="bg-purple-400 p-1 fixed right-0 bottom-0 w-full"><p class=" text-black text-center">Created by Aakash kumar Jha</p></footer>
 	<script>
 
 		// dismiss alert message
@@ -151,7 +156,8 @@
 			}
 		}
 
-		//hide login form  onclick window
+
+		// hide login form  onclick window
 		window.onclick = function (event) {
 			var loginForm = document.getElementById('loginModal');
 			var signupForm = document.getElementById('signupModal');

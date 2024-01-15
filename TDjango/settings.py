@@ -73,7 +73,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'TDjango.wsgi.application'
 
-
+DEBUG=False
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -128,7 +128,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Added manually
 
-STATIC_ROOT = BASE_DIR/'static'
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
+STATICFILES_DIRS = [
+    BASE_DIR / "static",    
+]
+
+# STATICFILES_DIRS={}
 
 COMPRESS_ROOT=BASE_DIR /'static'
 COMPRESS_ENABLED=True
