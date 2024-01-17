@@ -6,30 +6,28 @@
 
 <head>
 	<meta charset="UTF-8">
-	{% comment %}
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"> {% endcomment %}
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>{% block title %}{% endblock title %}</title>
 
 	{% compress css %}
-	<link rel="stylesheet" href="{% static 'src/output.css' %}">
+	<link rel="stylesheet" href="{% static 'src/output.css' %}" type="css">
 	{% endcompress %}
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 
 <body class="bg-purple-100 " id="body">
 	<nav class="nav bg-purple-500 flex items-center  px-1 lg:justify-center">
-		<p class="text-white p-3 px-2 text-sm lg:text-3xl  font-bold ">To-Do </p>
+		<p class="text-white p-3 px-2 text-lg lg:text-2xl  font-bold ">To-Do </p>
 		<ul class="flex  space-x-1 py-2  text-white  absolute right-1 ">
 			{% if user.is_authenticated %}
-			<li class="text-xs lg:text-[15px] rounded  py-2 px-1 hover:bg-purple-300"><a role="button" id=""
+			<li class="text-sm lg:text-lg rounded  py-2 px-1 hover:bg-purple-300"><a role="button" id=""
 					href="\logout">Logout</a></li>
-			<li class="text-xs lg:text-[15px] rounded  py-2 px-1 hover:bg-purple-300"><a role="button" id=""
+			<li class="text-sm lg:text-[17px] rounded  py-2 px-1 hover:bg-purple-300"><a role="button" id=""
 					href="#">Welcome {{user}}</a></li>
 			{% else %}
-			<li class="text-[15px] rounded p-2 hover:bg-purple-300"><a role="button" id="loginBtn" onclick="showLogin()"
+			<li class="  rounded p-2 hover:bg-purple-300 lg:text-lg"><a role="button" id="loginBtn" onclick="showLogin()"
 					href="#">Login</a></li>
-			<li class="text-[15px] p-2 rounded hover:bg-purple-300"><a role="button" id="signupBtn"
+			<li class="  p-2 rounded hover:bg-purple-300 lg:text-lg"><a role="button" id="signupBtn"
 					onclick="showSignup()" href="#">Sign up</a></li>
 			{% endif %}
 		</ul>
@@ -75,7 +73,7 @@
 		class="hidden  login-form  absolute left-[13%] rounded-lg outline outline-purple-300 outline-2 shadow-purple-500 shadow-md  px-4  w-3/4 mx-auto  mt-20 pb-4 bg-gray-100 sm:w-2/3 md:w-1/2 lg:w-3/12 lg:left-[39%]">
 		<span id="close" onclick="hideSignUpModal()" role="button"
 			class="text-3xl  relative left-[96%] text-gray-600 active:font-bold   hover:text-gray-500">&times;</span>
-		<p class="text-black  font-semibold text-center text-xl">Sign Up</p>
+			<p class="text-purple-800  font-bold text-2xl  text-center ">Sign up</p>
 		<form action="\signup" method="get"
 			class="w-full text-center space-y-[18px] flex flex-col bg-gray-100 py-4 px-4 ">
 			{% csrf_token %}
@@ -100,7 +98,7 @@
 
 	{% block body %}
 	{% endblock body %}
-	<footer class="bg-purple-400 p-1 fixed right-0 bottom-0 w-full"><p class=" text-black text-center">Created by Aakash kumar Jha</p></footer>
+	<footer class="bg-purple-200 p-1 fixed right-0 bottom-0 w-full"><p class=" text-black text-center">Created by Aakash kumar Jha </p></footer>
 	<script>
 
 		// dismiss alert message
